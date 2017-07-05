@@ -1,6 +1,12 @@
 import React from 'react';
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { LinkContainer } from 'react-router-bootstrap';
+
+const Item = (props) => (
+    <LinkContainer to={ props.url }>
+        <NavItem eventKey={ props.eventKey }>{ props.children }</NavItem>
+    </LinkContainer>
+);
 
 export default class NavBar extends React.Component {
     render() {
@@ -8,20 +14,20 @@ export default class NavBar extends React.Component {
             <Navbar>
                 <Navbar.Header>
                     <Navbar.Brand>
-                        <a href="#">React-Bootstrap</a>
+                        {/*<a href="#">React-Bootstrap</a>*/}
                     </Navbar.Brand>
                 </Navbar.Header>
                 <Nav>
-                    <li>
-                        <Link to="/user">User</Link>
-                    </li>
+                    <Item url="/user" eventKey={ 1 }>User</Item>
+                    <LinkContainer to="/penka/2">
+                        <NavItem eventKey={2} href="/user/2">Link</NavItem>
+                    </LinkContainer>
                     <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-                        <li>
-                            <Link to="/user/1">User1</Link>
-                        </li>
-                        <li>
-                            <Link to="/user/2">User2</Link>
-                        </li>
+                        <MenuItem eventKey={3.1}>Action</MenuItem>
+                        <MenuItem eventKey={3.2}>Another action</MenuItem>
+                        <MenuItem eventKey={3.3}>Something else here</MenuItem>
+                        <MenuItem divider/>
+                        <MenuItem eventKey={3.4}>Separated link</MenuItem>
                     </NavDropdown>
                 </Nav>
             </Navbar>
