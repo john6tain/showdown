@@ -28,4 +28,4 @@ The list is work in progress. Add bullets as we have new ideas. So far:
 **TeamNOne**
 Alex, John, Yavor
 
-![dev_diagram]: https://github.com/teamNOne/showdown/blob/master/dev-diagram.png
+![dev_diagram]: https://github.com/teamNOne/showdown/blob/master/dev-diagram.png?raw=true
