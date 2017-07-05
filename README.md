@@ -5,7 +5,7 @@ This app is part of [ReactJsFundamentals] course at [SoftUni]. This is a teamwor
 ### Project information
 Showdown is client-focused applicatoin, powered by [ReactJS] and [Bootstrap]; server runs on [Node.js] and [Express] framework. It is designed according to [Flux] architecture, [Alt] implementation.
 ### Development Diagram
-![dev_diagram]
+![Development diagram][dev_diagram]
 ### Features
 Here is what we have so far:
 ### Todos
@@ -28,4 +28,4 @@ The list is work in progress. Add bullets as we have new ideas. So far:
 **TeamNOne**
 Alex, John, Yavor
 
-![dev_diagram]: <https://github.com/teamNOne/showdown/blob/master/dev-diagram.png>
+![dev_diagram]: https://github.com/teamNOne/showdown/blob/master/dev-diagram.png
