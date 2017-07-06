@@ -10,17 +10,45 @@ body {
   width:20%;
   border:3px solid transparent;
 }
-.showdown :hover {
-  border-color:blue;
+.thumbnail {
+  padding: 0;
+}
+.thumbnail .inner-container {
+  border: 4px solid transparent;
+  transition: border-color 0.2s;
+  overflow: hidden;
+}
+.thumbnail .inner-container:hover {
+  border-color: #23b7f5;
+}
+.thumbnail img {
+  max-width: 120%;
+}
+.thumbnail .image-container {
+  height:350px;
+  background-color: #3b3f51;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-/*
-Dummy Css
-*/
-img {
-  max-width: 300px;
+@keyframes fadeInUp {
+  0% {
+	opacity: 0;
+	transform: translateY(20px);
+  }
+
+  100% {
+	opacity: 1;
+	transform: translateY(0);
+  }
 }
-.inline {
-  display: inline-block;
+.fadeInUp {
+    -webkit-animation-name: fadeInUp;
+    animation-name: fadeInUp;
+}
+
+img {
+  max-width: 100%;
 }
 
