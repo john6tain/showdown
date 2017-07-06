@@ -31,6 +31,9 @@ export default class NavBar extends React.Component {
                         </span>
                         Showdown
                     </Link>
+                    <Link to='/topten' className='navbar-brand'>
+                        Hall of Fame(Top 10)
+                    </Link>
                 </div>
                 <div id='navbar' className='navbar-collapse collapse'>
                     <ul className='nav navbar-nav'>
