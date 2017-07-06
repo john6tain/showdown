@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Navbar from './NavBar';
-import Footer from './Footer';
+// import Footer from './Footer';
 import Routes from './Routes';
 import $ from 'jquery';
 
@@ -29,7 +29,6 @@ export default class App extends Component {
                 <main>
                     <Routes/>
                 </main>
-                <Footer/>
             </div>
         );
     }
