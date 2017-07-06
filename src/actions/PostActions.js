@@ -13,6 +13,8 @@ class PostActions {
         data.get()
             .then(posts => this.getShowdownSuccess(posts))
             .catch(err => this.getShowdownFail(err));
+
+        return true;
     }
 }
 

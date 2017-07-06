@@ -5,13 +5,11 @@ class ShowdownStore {
     constructor() {
         this.bindActions(PostActions);
 
-        this.postLeft = {};
-        this.postRight = {};
+        this.posts = [];
     }
 
     onGetShowdownSuccess(posts) {
-        this.postLeft = posts[0];
-        this.postRight = posts[1];
+        this.posts = posts;
     }
 }
 

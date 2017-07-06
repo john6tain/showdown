@@ -5,6 +5,15 @@ body {
   font-family: sans-serif;
 }
 
+.showdown {
+  display: inline-block;
+  width:20%;
+  border:3px solid transparent;
+}
+.showdown :hover {
+  border-color:blue;
+}
+
 /*
 Dummy Css
 */
