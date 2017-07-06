@@ -1,20 +1,16 @@
 import React from 'react';
-import { Panel, Image } from 'react-bootstrap';
 
 export default class Showdown extends React.Component {
     render() {
         return (
             <div>
                 { this.props.posts.map(p => (
-                    <Panel key={ p._id }
-                           onClick={ this.props.upVote.bind(this.props.context, p._id) }
-                           bsClass='showdown'
-                           bsStyle="primary"
-                           header={ p.name }>
+                    <div key={ p._id }
+                           onClick={ this.props.upVote.bind(this.props.context, p._id) }>
 
-                        <Image src={ p.imageUrl } responsive />
+                        <img src={ p.imageUrl } />
                         <p>{ p.description }</p>
-                    </Panel>
+                    </div>
                     ))
                 }
             </div>

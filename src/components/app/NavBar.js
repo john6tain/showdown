@@ -1,29 +1,43 @@
 import React from 'react';
-import { Navbar, Nav, NavItem, NavDropdown } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
 import { Link } from 'react-router-dom';
-
-const Item = (props) => (
-    <LinkContainer to={ props.url }>
-        <NavItem eventKey={ props.eventKey }>{ props.children }</NavItem>
-    </LinkContainer>
-);
 
 export default class NavBar extends React.Component {
     render() {
         return (
-            <Navbar>
-                <Navbar.Header>
-                    <Navbar.Brand>
-                        <Link to="/">Showdown</Link>
-                    </Navbar.Brand>
-                </Navbar.Header>
-                <Nav>
-                    <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-                        <Item url='/' eventKey={3.1}>Item</Item>
-                    </NavDropdown>
-                </Nav>
-            </Navbar>
+            <nav className='navbar navbar-default navbar-static-top'>
+                <div className='navbar-header'>
+                    <button type='button'
+                            className='navbar-toggle collapsed'
+                            data-toggle='collapse'
+                            data-target='#navbar'>
+                        <span className='sr-only'>Toggle navigation</span>
+                        <span className='icon-bar'/>
+                        <span className='icon-bar' />
+                        <span className='icon-bar' />
+                    </button>
+                    <Link to='/' className='navbar-brand'>
+                        <span
+                            ref='triangles'
+                            className={'triangles animated ' + this.props.animationClass}>
+                            <div className='tri invert' />
+                            <div className='tri invert' />
+                            <div className='tri' />
+                            <div className='tri invert' />
+                            <div className='tri invert' />
+                            <div className='tri' />
+                            <div className='tri invert' />
+                            <div className='tri' />
+                            <div className='tri invert' />
+                        </span>
+                        Showdown
+                    </Link>
+                </div>
+                <div id='navbar' className='navbar-collapse collapse'>
+                    <ul className='nav navbar-nav'>
+
+                    </ul>
+                </div>
+            </nav>
         )
     }
 }
