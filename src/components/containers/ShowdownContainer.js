@@ -30,6 +30,6 @@ export default class ShowdownContainer extends React.Component {
     }
 
     render() {
-        return <Showdown posts={ this.state.posts } upVote={ this.upVote } context={ this } />;
+        return <Showdown posts={ this.state.posts }  />;
     }
 }

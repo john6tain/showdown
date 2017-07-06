@@ -1,19 +1,22 @@
 import React from 'react';
+import Post from './Post';
 
 export default class Showdown extends React.Component {
     render() {
-        return (
-            <div>
-                { this.props.posts.map(p => (
-                    <div key={ p._id }
-                           onClick={ this.props.upVote.bind(this.props.context, p._id) }>
+        let posts = this.props.posts.map((p, index) => {
+            return (
+                <Post key={ p._id }
+                      imageUrl={ p.imageUrl }/>
+            );
+        });
 
-                        <img src={ p.imageUrl } />
-                        <p>{ p.description }</p>
-                    </div>
-                    ))
-                }
+        return (
+            <div className='container'>
+                <h3 className='text-center'>Click on the portrait. Select your favorite.</h3>
+                <div className='row'>
+                    { posts }
+                </div>
             </div>
-        )
+        );
     }
 }
