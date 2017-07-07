@@ -4,6 +4,7 @@ import Post from './Post';
 export default class Showdown extends React.Component {
     render() {
         let posts = this.props.posts.map((p, index) => {
+            console.log('[Inside Showdown] You can see we have 2 posts.');
             return (
                 <Post key={ p._id }
                       imageUrl={ p.imageUrl }/>

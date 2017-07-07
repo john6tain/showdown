@@ -7,6 +7,7 @@ export default class Parent extends React.Component {
     }
 
     render() {
+        console.log('This is my replicate attempt. "Parent" has the role of "ShowdownContainer", "Child" - "Showdown", "GranChild"-"Post');
         return <Child />
 
     }

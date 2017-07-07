@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import Navbar from './NavBar';
-import Footer from './Footer';
 import Routes from './Routes';
 import $ from 'jquery';
 
@@ -26,10 +25,10 @@ export default class App extends Component {
         return (
             <div>
                 <Navbar animationClass={ this.state.ajaxAnimationClass } />
+                <h1 style={ {color: 'red'} }>You can see the described behaviour on Home page (/). On test (/test) you can see my attempt to replicate the issue.Look in the console for further information</h1>
                 <main>
                     <Routes/>
                 </main>
-                <Footer/>
             </div>
         );
     }
