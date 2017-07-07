@@ -34,7 +34,9 @@ export default class NavBar extends React.Component {
                 </div>
                 <div id='navbar' className='navbar-collapse collapse'>
                     <ul className='nav navbar-nav'>
-
+                        <li>
+                            <Link to="/combatant/add">Add Combatant</Link>
+                        </li>
                     </ul>
                 </div>
             </nav>

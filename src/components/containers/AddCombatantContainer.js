@@ -27,14 +27,34 @@ export default class AddCombatantContainer extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        CombatantActions.addCombatant(this.state);
+        console.log('[AddCombatantContainer] Adding combatant', this.state);
+        CombatantActions.addCombatant({
+            name: this.state.name,
+            image: this.state.image,
+            description: this.state.description
+        });
     }
 
     render() {
-        return <AddCombatant handleSubmit={ this.handleSubmit.bind(this) }
-                             name={ this.state.name }
-                             description={ this.state.description }
-                             imageUrl={ this.state.imageUrl }
-                             formMessage={ this.state.formMessage } />;
+        let form = {
+            title: 'Add Combatant',
+            handleSubmit: this.handleSubmit.bind(this),
+            submitState: this.state.formSubmitState,
+        };
+        let input = {
+            name: {
+                    value: this.state.name,
+                    validationState: this.state.nameValidationState
+                },
+            imageUrl: {
+                    value: this.state.imageUrl,
+                    validationState: this.state.imageUrlValidationState
+                },
+            description: { value: this.state.description }
+        };
+        return <AddCombatant form={ form }
+                             input={ input }
+                             message={ this.state.message }
+                             onInputChange={ CombatantActions.updateInput } />
     }
 }

@@ -1,12 +1,15 @@
 import alt from '../alt';
 import data from '../__fakeData';
+import $ from 'jquery';
 
 class CombatantActions {
     constructor() {
         this.generateActions(
             'getShowdownSuccess',
             'getShowdownFail',
-            'handleInputChange'
+            'handleInputChange',
+            'addCombatantSuccess',
+            'addCombatantFail'
         );
     }
 
@@ -18,8 +21,27 @@ class CombatantActions {
         return true;
     }
 
-    updateInput(field, value) {
-        this.handleInputChange(field, value);
+    updateInput(e) {
+        let field = e.target.name;
+        let value = e.target.value;
+        this.handleInputChange({ field, value });
+
+        return true;
+    }
+
+    addCombatant(combatantData) {
+        let request = {
+            method: 'post',
+            url: 'http://localhost:3001/combatant/add',
+            data: JSON.stringify(combatantData),
+            contentType: 'application/json',
+            dataType: 'jsonp'
+        };
+        $.ajax(request)
+            .done(combatant => this.addCombatantSuccess(combatant))
+            .fail(err => console.log(err));
+
+        return true;
     }
 }
 

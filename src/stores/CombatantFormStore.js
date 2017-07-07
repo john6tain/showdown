@@ -6,18 +6,25 @@ class CombatantFormStore {
         this.bindActions(CombatantActions);
 
         this.name = '';
+        this.nameValidationState = '';
         this.description = '';
-        this.imageUrl = '';
-        this.formMessage = '';
+        this.image = '';
+        this.imageUrlValidationState = '';
+        this.formSubmitState = '';
+        this.message = '';
     }
 
-    onHandleInputChange(field, value) {
-        if (!this[field]) {
-            this.formMessage = 'Invalid input name! Stop tempering you hacker!';
+    onHandleInputChange(input) {
+        if (this[input.field] === undefined) {
+            this.message = 'Invalid input name! Stop tempering you hacker!';
+            this.formSubmitState = 'has-error';
+            this.name = '';
+            this.image = '';
+            this.description = '';
             return;
         }
 
-        this[field] = value;
+        this[input.field] = input.value;
     }
 }
 

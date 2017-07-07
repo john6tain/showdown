@@ -11,7 +11,9 @@ export default class Form extends React.Component {
                             <div className='panel-body'>
                                 <form onSubmit={ this.props.handleSubmit }>
                                     <div className={ `form-group ${ this.props.submitState }` }>
-                                        <span className={ `help-block` }>{ this.props.message }</span>
+                                        { this.props.submitState?
+                                            <span className={ `help-block` }>{ this.props.message }</span>
+                                            : null }
                                     </div>
                                     { this.props.children }
                                 </form>
