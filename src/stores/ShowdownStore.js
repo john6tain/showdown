@@ -1,9 +1,9 @@
 import alt from '../alt'
-import PostActions from '../actions/PostActions';
+import CombatantActions from '../actions/CombatantActions';
 
 class ShowdownStore {
     constructor() {
-        this.bindActions(PostActions);
+        this.bindActions(CombatantActions);
 
         this.posts = [];
     }
