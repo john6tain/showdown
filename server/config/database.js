@@ -49,6 +49,7 @@ module.exports = (config) => {
 
     // initDb();
     seedAdmin();
-
+    require('../models/User');
+    require('../models/Combatant');
 };
 
