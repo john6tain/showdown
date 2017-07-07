@@ -7,7 +7,7 @@ export default class Showdown extends React.Component {
             <div className='container'>
                 <h3 className='text-center'>Click on the portrait. Select your favorite.</h3>
                 <div className="row">
-                    { this.props.posts.map((p, index) => (
+                    { this.props.combatants.map((p, index) => (
                         <Post key={ p._id }
                               index={ index }
                               id={ p._id }

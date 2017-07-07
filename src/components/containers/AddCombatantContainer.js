@@ -1,5 +1,6 @@
 import React from 'react';
 import CombatantActions from '../../actions/CombatantActions';
+import FormActions from '../../actions/FormActions';
 import CombatantFormStore from '../../stores/CombatantFormStore';
 import AddCombatant from '../combatant/AddCombatant';
 
@@ -47,7 +48,7 @@ export default class AddCombatantContainer extends React.Component {
                     validationState: this.state.nameValidationState
                 },
             imageUrl: {
-                    value: this.state.imageUrl,
+                    value: this.state.image,
                     validationState: this.state.imageUrlValidationState
                 },
             description: { value: this.state.description }
@@ -55,6 +56,6 @@ export default class AddCombatantContainer extends React.Component {
         return <AddCombatant form={ form }
                              input={ input }
                              message={ this.state.message }
-                             onInputChange={ CombatantActions.updateInput } />
+                             onInputChange={ FormActions.inputChange } />
     }
 }
