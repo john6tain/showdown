@@ -7,13 +7,7 @@ const Routes = () => (
     <Switch>
         <Route exact path='/' component={ ShowdownContainer } />
         <Route path='/topten' component={ TopTenContainer } />
-
     </Switch>
-
-
-)
-
-
-
+);
 
 export default Routes

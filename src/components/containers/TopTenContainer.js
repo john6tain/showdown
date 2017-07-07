@@ -1,6 +1,3 @@
-/**
- * Created by Yavor on 06-Jul-17.
- */
 import React from 'react';
 import ListActions from '../../actions/ListActions';
 import ListStore from '../../stores/ListStore'
@@ -30,7 +27,6 @@ export default class TopTenContainer extends React.Component {
 
 
     render() {
-
         return <Cats cats={ this.state.cats } context={ this } />;
     }
 }
