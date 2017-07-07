@@ -1,7 +1,7 @@
 import alt from '../alt';
 import data from '../__fakeData';
 
-class PostActions {
+class CombatantActions {
     constructor() {
         this.generateActions(
             'getShowdownSuccess',
@@ -18,4 +18,4 @@ class PostActions {
     }
 }
 
-export default alt.createActions(PostActions);
+export default alt.createActions(CombatantActions);

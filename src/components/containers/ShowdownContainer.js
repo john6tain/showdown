@@ -1,5 +1,5 @@
 import React from 'react';
-import PostActions from '../../actions/PostActions';
+import CombatantActions from '../../actions/CombatantActions';
 import ShowdownStore from '../../stores/ShowdownStore'
 import Showdown from '../Showdown';
 
@@ -18,7 +18,7 @@ export default class ShowdownContainer extends React.Component {
 
     componentDidMount() {
         ShowdownStore.listen(this.onChange);
-        PostActions.getShowdown();
+        CombatantActions.getShowdown();
     }
 
     componentWillUnmount() {
