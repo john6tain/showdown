@@ -1,26 +1,25 @@
-const passport = require('passport');
-const LocalPassport = require('passport-local');
+const jwt = require('jsonwebtoken')
+const LocalPassportStrategy = require('passport-local').Strategy;
 const User = require('mongoose').model('User');
 
-module.exports = () => {
-    passport.use(new LocalPassport((username, password, done) => {
+
+module.exports = new LocalPassportStrategy({
+        usernameField: 'username',
+        passwordField: 'password',
+        session: false,
+        passReqToCallback: true
+    }, (req, username, password, done) => {
         User.findOne({ username: username }).then(user => {
             if (!user) { return done(null, false) }
             if (!user.authenticate(password)) { return done(null, false) }
 
-            return done(null, user);
+            const payload = {
+                sub: user.id
+            }
+
+            // create a token string 
+            const token = jwt.sign(payload, '734m |_|n0')
+
+            return done(null, token, user);
         });
-    }));
-
-    passport.serializeUser((user, done) => {
-        if (user) { return done(null, user._id) }
-    });
-
-    passport.deserializeUser((id, done) => {
-        User.findById(id).then(user => {
-            if (!user) { return done(null, false) }
-
-            return done(null, user);
-        });
-    });
-};
+})

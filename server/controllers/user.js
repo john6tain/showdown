@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const encryption = require('../utilities/encryption');
+const passport = require('passport');
 
 module.exports = {
     register: {
@@ -20,13 +21,8 @@ module.exports = {
 
             User.create(userData)
                 .then(user => {
-                    req.logIn(user, (err, user) => {
-                        if (err) {
-                            return res.status(404).send({ error: 'Authentication not working!', message: 'Need data here? Look under /server/controllers/user.js.' });
-                        }
-
-                        res.status(200).send({ message: 'Need data here? Look under /server/controllers/user.js.' });
-                    })
+                    //TODO: check if user exist
+                        res.status(200).send({ success: true, message: 'You successfully registered user now Please login' });
                 })
                 .catch(error => {
                     userData.error = error;
@@ -35,21 +31,36 @@ module.exports = {
         },
     },
     login: {
-        post: (req, res) => {
+        post: (req, res, next) => {
             let userData = req.body;
 
             User.findOne({ username: userData.username }).then(user => {
                 if (!user || !user.authenticate(userData.password)) {
                     return res.status(404).send({ error: 'Wrong credentials', message: 'Need data here? Look under /server/controllers/user.js.' });
                 }
-
-                req.logIn(user, (err, user) => {
-                    if (err) {
-                        return res.status(404).send({ error: err, message: 'Need data here? Look under /server/controllers/user.js.' });
+                
+                 return passport.authenticate('passport', (err, token, userData) => {
+                if (err) {
+                    if (err.name === 'IncorrectCredentialsError') {
+                        return res.status(200).json({
+                            success: false,
+                            message: err.message
+                        })
                     }
 
-                    res.status(200).send({ message: 'Need data here? Look under /server/controllers/user.js.' });
+                    return res.status(200).json({
+                        success: false,
+                        message: 'Could not process the form.'
+                    })
+                }
+
+                return res.json({
+                    success: true,
+                    message: 'You have successfully logged in!',
+                    token,
+                    user: userData
                 })
+            })(req, res, next)
             })
         },
     },

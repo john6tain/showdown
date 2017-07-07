@@ -34,6 +34,12 @@ export default class NavBar extends React.Component {
                     <Link to='/topten' className='navbar-brand'>
                         Hall of Fame(Top 10)
                     </Link>
+					<Link to='/login' className='navbar-brand'>
+                       Login
+                    </Link>
+					<Link to='/register' className='navbar-brand'>
+                       Register
+                    </Link>
                 </div>
                 <div id='navbar' className='navbar-collapse collapse'>
                     <ul className='nav navbar-nav'>
