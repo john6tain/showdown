@@ -5,7 +5,8 @@ class CombatantActions {
     constructor() {
         this.generateActions(
             'getShowdownSuccess',
-            'getShowdownFail'
+            'getShowdownFail',
+            'handleInputChange'
         );
     }
 
@@ -15,6 +16,10 @@ class CombatantActions {
             .catch(err => this.getShowdownFail(err));
 
         return true;
+    }
+
+    updateInput(field, value) {
+        this.handleInputChange(field, value);
     }
 }
 

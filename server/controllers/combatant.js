@@ -21,7 +21,7 @@ module.exports = {
     showdown:  (req, res) => {
         User.findById(TMP_USER_ID).then(user => {
             Combatant
-                .find({ random: { $near: [Math.random(), 0]} })
+                .find({ random: { $near: [Math.random(), 0] } })
                 .where('upVotes').nin(user.upVotedCombatants)
                 .limit(2)
                 .then(combatants => {
@@ -30,7 +30,7 @@ module.exports = {
                     }
 
                     res.status(200).send({ combatants });
-                })
+                });
         });
     },
 };
