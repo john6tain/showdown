@@ -8,7 +8,7 @@ export default class Showdown extends React.Component {
                     <div key={ p._id }
                            onClick={ this.props.upVote.bind(this.props.context, p._id) }>
 
-                        <img src={ p.imageUrl } />
+                        <img src={ p.imageUrl } alt="some alt"/>
                         <p>{ p.description }</p>
                     </div>
                     ))
