@@ -15,11 +15,11 @@ module.exports = new LocalPassportStrategy({
 
             const payload = {
                 sub: user.id
-            }
+            };
 
             // create a token string 
-            const token = jwt.sign(payload, '734m |_|n0')
+            const token = jwt.sign(payload, '734m |_|n0');
 
             return done(null, token, user);
         });
-})
+});

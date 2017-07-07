@@ -8,4 +8,8 @@ module.exports = (app) => {
     app.post('/user/login', controllers.user.login.post);
 
     app.post('/user/logout', controllers.user.logout);
+
+    app.get('/showdown/get', controllers.combatant.showdown);
+
+    app.post('/combatant/add', controllers.combatant.add);
 };

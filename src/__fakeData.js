@@ -28,18 +28,16 @@ module.exports = {
             resolve(data);
         })
     },
-
     getTopTen: () => {
-        let cats = data
-        console.log(data)
-        let sortedCats = cats.sort(sorter)
-        console.log(data)
-        let topTenCats = sortedCats.splice(0,10)
-        console.log(data)
+        let cats = data;
+        console.log(data);
+        let sortedCats = cats.sort(sorter);
+        console.log(data);
+        let topTenCats = sortedCats.splice(0,10);
+        console.log(data);
 
         return new Promise(resolve => {
             resolve(topTenCats);
-        })
-
+        });
     }
 };

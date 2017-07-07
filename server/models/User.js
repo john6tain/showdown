@@ -39,11 +39,8 @@ let userSchema = mongoose.Schema({
             message: 'Gender should be either "Male" or "Female"'
         }
     },
-    roles: [{ type: mongoose.Schema.Types.String}],
-    topics: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Topic' }],
-    answers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Answer'}],
-    likedTopics: [{ type: mongoose.Schema.Types.ObjectId , default: []}],
-    isBlocked: { type: mongoose.Schema.Types.Boolean, default: false }
+    roles: [{ type: mongoose.Schema.Types.String  }],
+    upVotedCombatants: [{ type: mongoose.Schema.Types.ObjectId, default: [] }]
 });
 
 userSchema.method({
