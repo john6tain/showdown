@@ -1,27 +1,36 @@
-import alt from '../alt'
+import alt from '../alt';
+import Auth from '../components/app/Auth';
+import toastr from 'toastr';
 import UserActions from '../actions/UserActions';
 
 class UserStore {
     constructor() {
         this.bindActions(UserActions);
 
-        this.user = {gender:'Male'};
+        this.user = { gender: 'Male' };
     }
 
     onRegisterSuccess(data) {
-        console.log(data);
+        toastr.success(data.message);
     }
 
     onLoginSuccess(data) {
-         window.sessionStorage.setItem('token',data.token);
+        toastr.success(data.message);
+        Auth.authenticateUser(data.token);
+
     }
 
     onLoginFail(err) {
-         console.log(err);
+        toastr.error(err.error);
     }
 
     onRegisterFail(err) {
-         console.log(err);
+        toastr.error(err.error);
+    }
+    
+    onLogout() {
+        toastr.warning('You have successfully logged out Bye!');
+        Auth.deauthenticateUser();
     }
 }
 

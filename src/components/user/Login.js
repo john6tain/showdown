@@ -2,7 +2,7 @@ import React from 'react';
 import UserActions from '../../actions/UserActions';
 import UserStore from '../../stores/UserStore';
 
-export default class LoginFrom extends React.Component {
+export default class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = UserStore.getState();
@@ -24,10 +24,13 @@ export default class LoginFrom extends React.Component {
     }
 
     handleLogin(e) {
+        e.preventDefault();
         UserActions.login(this.state.user);
+        this.props.history.goBack()
     }
 
     handleOnChange(e) {
+        e.preventDefault();
         const target = e.target;
         const field = target.name;
         const value = target.value;
@@ -38,14 +41,15 @@ export default class LoginFrom extends React.Component {
     }
 
     render() {
+
         return (
-            <div className="container">
-                    <label htmlFor="username">Username:</label>
-                    <input type="text" name="username" onChange={this.handleOnChange} />
-                    <label htmlFor="password">Password:</label>
-                    <input type="password" name="password" onChange={this.handleOnChange} />
-                    <button onClick={this.handleLogin}>Login</button>
-            </div>
+            <form onSubmit={this.handleLogin} action="#">
+                <label htmlFor="username">Username:</label>
+                <input type="text" name="username" onChange={this.handleOnChange} required />
+                <label htmlFor="password">Password:</label>
+                <input type="password" name="password" onChange={this.handleOnChange} required />
+                <button>Login</button>
+            </form>
         )
     }
 }

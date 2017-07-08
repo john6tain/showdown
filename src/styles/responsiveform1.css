@@ -1,0 +1,10 @@
+@media all and(max-width: 1200px) and (min-width: 601px) {
+  .facet_sidebar {
+    display: none;
+  }
+  
+  div#envelope{
+    width: 80%;
+    margin: 10px 30% 10px 11%;
+    }
+}

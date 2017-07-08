@@ -7,7 +7,8 @@ class UserActions {
             'registerSuccess',
             'registerFail',
             'loginSuccess',
-            'loginFail'
+            'loginFail',
+            'logoutSuccess'
         );
     }
 
@@ -17,7 +18,7 @@ class UserActions {
             url: "http://localhost:3001/user/register",
             headers: { "Content-Type": "application/json" },
             data: JSON.stringify(user),
-            success: (data) =>  this.registerSuccess(data),
+            success: (data) => this.registerSuccess(data),
             error: (err) => this.registerFail(err.responseJSON)
         });
 
@@ -31,10 +32,15 @@ class UserActions {
             url: "http://localhost:3001/user/login",
             headers: { "Content-Type": "application/json" },
             data: JSON.stringify(user),
-            success: (data) =>  this.loginSuccess(data),
+            success: (data) => this.loginSuccess(data),
             error: (err) => this.loginFail(err.responseJSON)
         });
 
+        return true;
+    }
+
+    logout() {
+        this.logoutSuccess();
         return true;
     }
 
