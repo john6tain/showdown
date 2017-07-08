@@ -1,6 +1,7 @@
 import alt from '../alt';
 import CombatantActions from '../actions/CombatantActions';
 import FormActions from '../actions/FormActions';
+import toastr from 'toastr';
 
 class CombatantFormStore {
     constructor() {
@@ -37,6 +38,8 @@ class CombatantFormStore {
         this.imageUrlValidationState = '';
         this.formSubmitState = '';
         this.message = '';
+
+        toastr.success('Combatant added!');
     }
 
     onValidationFail(field) {
