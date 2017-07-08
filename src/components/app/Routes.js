@@ -12,7 +12,6 @@ const Routes = () => (
         <Route  path='/login' component={Login} />
         <Route  path='/register' component={Register} />
         <PrivateRoute  path='/profile' component={Profile} locataion="/profile" />
-        
     </Switch>
 );
 
