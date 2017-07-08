@@ -1,5 +1,6 @@
 import React from 'react';
 import CombatantActions from '../../actions/CombatantActions';
+import FormActions from '../../actions/FormActions';
 import CombatantFormStore from '../../stores/CombatantFormStore';
 import AddCombatant from '../combatant/AddCombatant';
 
@@ -27,12 +28,16 @@ export default class AddCombatantContainer extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        console.log('[AddCombatantContainer] Adding combatant', this.state);
-        CombatantActions.addCombatant({
-            name: this.state.name,
-            image: this.state.image,
-            description: this.state.description
-        });
+        let name = this.state.name;
+        let image = this.state.image;
+        let description = this.state.description;
+        if (!name || !image) {
+            console.log('[AddCombatantContainer]', !name);
+            FormActions.validationFail(!name? 'name' : 'image');
+            return;
+        }
+
+        CombatantActions.addCombatant({ name,  image,  description });
     }
 
     render() {
@@ -46,15 +51,15 @@ export default class AddCombatantContainer extends React.Component {
                     value: this.state.name,
                     validationState: this.state.nameValidationState
                 },
-            imageUrl: {
-                    value: this.state.imageUrl,
-                    validationState: this.state.imageUrlValidationState
+            image: {
+                    value: this.state.image,
+                    validationState: this.state.imageValidationState
                 },
             description: { value: this.state.description }
         };
         return <AddCombatant form={ form }
                              input={ input }
                              message={ this.state.message }
-                             onInputChange={ CombatantActions.updateInput } />
+                             onInputChange={ FormActions.inputChange } />;
     }
 }

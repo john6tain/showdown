@@ -9,7 +9,9 @@ module.exports = (app) => {
 
     app.post('/user/logout', controllers.user.logout);
 
-    app.get('/showdown/get', controllers.combatant.showdown);
+    app.get('/showdown/get', controllers.combatant.showdown.get);
+
+    app.post('/showdown/upVote', controllers.combatant.showdown.upVote);
 
     app.post('/combatant/add', controllers.combatant.add);
 };

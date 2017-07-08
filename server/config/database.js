@@ -23,7 +23,7 @@ function seedAdmin() {
             };
 
             User.create(adminData).then(admin => {
-                console.log(`Seeded admin: ${admin.username}`);
+                console.log(`Seeded admin with ID: ${admin._id}`);
             });
         }
     });

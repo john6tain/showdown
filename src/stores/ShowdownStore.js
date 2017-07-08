@@ -5,11 +5,14 @@ class ShowdownStore {
     constructor() {
         this.bindActions(CombatantActions);
 
-        this.posts = [];
+        this.combatants = [];
     }
 
-    onGetShowdownSuccess(posts) {
-        this.posts = posts;
+    onGetShowdownSuccess(response) {
+        this.combatants = response.combatants;
+        if (response.message) {
+            this.message = response.message;
+        }
     }
 }
 

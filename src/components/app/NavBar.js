@@ -5,36 +5,37 @@ import Auth from './Auth';
 
 export default class NavBar extends React.Component {
     render() {
-        let links;
+        let navbar;
         if (Auth.isUserAuthenticated()) {
-            links = (
-                <ul className='nav navbar-nav'>
-                    <li>
-                        <Link to="/combatant/add">Add Combatant</Link>
-                    </li>
-                    <li>
-                        <Link to='/profile' className='navbar-brand'>Profile</Link>
-                    </li>
-                    <li>
-                        <Link to='#' onClick={UserActions.logout} className='navbar-brand'>
-                            Logout
-                        </Link>
-                    </li>
-                </ul>)
+            navbar = (
+                <div id='navbar' className='navbar-collapse collapse'>
+                    <ul className="nav navbar-nav">
+                        <li>
+                            <Link to="/combatant/add">Add Combatant</Link>
+                        </li>
+                    </ul>
+                    <ul className='nav navbar-nav pull-right'>
+                        <li>
+                            <Link to='/profile'>Profile</Link>
+                        </li>
+                        <li>
+                            <Link to='#' onClick={UserActions.logout}>Logout</Link>
+                        </li>
+                    </ul>
+                </div>
+            );
         } else {
-            links = (
-                <ul className='nav navbar-nav'>
-                    <li>
-                        <Link to='/login' className='navbar-brand'>
-                            Login
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to='/register' className='navbar-brand'>
-                            Register
-                        </Link>
-                    </li>
-                </ul>)
+            navbar = (
+                <div id='navbar' className='navbar-collapse collapse'>
+                    <ul className='nav navbar-nav pull-right'>
+                        <li>
+                            <Link to='/login'>Login</Link>
+                        </li>
+                        <li>
+                            <Link to='/register'>Register</Link>
+                        </li>
+                    </ul>
+                </div>);
         }
 
         return (
@@ -65,14 +66,8 @@ export default class NavBar extends React.Component {
                         </span>
                         Showdown
                     </Link>
-                    <Link to='/topten' className='navbar-brand'>
-                        Hall of Fame(Top 10)
-                    </Link>
-
                 </div>
-                <div id='navbar' className='navbar-collapse collapse'>
-                    {links}
-                </div>
+                {navbar}
             </nav>
         )
     }

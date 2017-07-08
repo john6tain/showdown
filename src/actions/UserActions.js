@@ -26,7 +26,6 @@ class UserActions {
     }
 
     login(user) {
-
         $.ajax({
             type: "POST",
             url: "http://localhost:3001/user/login",
