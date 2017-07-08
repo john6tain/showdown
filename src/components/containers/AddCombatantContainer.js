@@ -28,12 +28,16 @@ export default class AddCombatantContainer extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        console.log('[AddCombatantContainer] Adding combatant', this.state);
-        CombatantActions.addCombatant({
-            name: this.state.name,
-            image: this.state.image,
-            description: this.state.description
-        });
+        let name = this.state.name;
+        let image = this.state.image;
+        let description = this.state.description;
+        if (!name || !image) {
+            console.log('[AddCombatantContainer]', !name);
+            FormActions.validationFail(!name? 'name' : 'image');
+            return;
+        }
+
+        CombatantActions.addCombatant({ name,  image,  description });
     }
 
     render() {
@@ -47,15 +51,15 @@ export default class AddCombatantContainer extends React.Component {
                     value: this.state.name,
                     validationState: this.state.nameValidationState
                 },
-            imageUrl: {
+            image: {
                     value: this.state.image,
-                    validationState: this.state.imageUrlValidationState
+                    validationState: this.state.imageValidationState
                 },
             description: { value: this.state.description }
         };
         return <AddCombatant form={ form }
                              input={ input }
                              message={ this.state.message }
-                             onInputChange={ FormActions.inputChange } />
+                             onInputChange={ FormActions.inputChange } />;
     }
 }

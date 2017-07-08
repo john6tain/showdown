@@ -40,15 +40,18 @@ class CombatantActions {
     }
 
     upVote(combatantId) {
+        console.log(combatantId);
         let request = {
-            type: 'method',
+            type: 'post',
             url: 'http://localhost:3001/showdown/upVote',
             contentType: 'application/json',
-            data: JSON.stringify(combatantId)
+            data: JSON.stringify({ combatantId })
         };
         $.ajax(request)
             .done(() => this.getShowdown())
-            .faiL(err => this.upVoteFail(err.responseJSON));
+            .fail(err => this.upVoteFail(err.responseJSON));
+
+        return true;
     }
 }
 

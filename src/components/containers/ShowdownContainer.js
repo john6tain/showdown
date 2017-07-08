@@ -25,11 +25,15 @@ export default class ShowdownContainer extends React.Component {
         ShowdownStore.unlisten(this.onChange);
     }
 
-    upVote(postId) {
-        console.log('upvoting', postId);
+    upVote(combatantId) {
+        console.log('upvoting', combatantId);
+        CombatantActions.upVote(combatantId);
     }
 
     render() {
-        return <Showdown combatants={ this.state.combatants } upVote={ this.upVote } context={ this } />;
+        return <Showdown combatants={ this.state.combatants }
+                         upVote={ this.upVote }
+                         context={ this }
+                         message={ this.state.message } />;
     }
 }

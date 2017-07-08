@@ -22,8 +22,8 @@ export default class AddCombatant extends React.Component {
 
                 <TextGroup type="text"
                            label="Image"
-                           value={ input.imageUrl.value }
-                           validationState={ input.imageUrl.validationState }
+                           value={ input.image.value }
+                           validationState={ input.image.validationState }
                            message={ this.props.message }
                            handleChange={ this.props.onInputChange } />
 
