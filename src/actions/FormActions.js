@@ -3,17 +3,21 @@ import alt from '../alt';
 class FormActions {
     constructor() {
         this.generateActions(
-            'handleInputChange'
+            'handleInputChange',
+            'validationFail'
         );
     }
 
     inputChange(e) {
         let field = e.target.name;
         let value = e.target.value;
-        console.log('[FormActions] input change', field, value);
         this.handleInputChange({ field, value });
 
         return true;
+    }
+
+    validationFail(field) {
+        this.validationFail(field);
     }
 }
 

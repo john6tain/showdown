@@ -11,7 +11,7 @@ class CombatantFormStore {
         this.nameValidationState = '';
         this.description = '';
         this.image = '';
-        this.imageUrlValidationState = '';
+        this.imageValidationState = '';
         this.formSubmitState = '';
         this.message = '';
     }
@@ -25,8 +25,23 @@ class CombatantFormStore {
             this.description = '';
             return;
         }
-
+        this[`${ input.field }ValidationState`] = '';
         this[input.field] = input.value;
+    }
+
+    onAddCombatantSuccess() {
+        this.name = '';
+        this.nameValidationState = '';
+        this.description = '';
+        this.image = '';
+        this.imageUrlValidationState = '';
+        this.formSubmitState = '';
+        this.message = '';
+    }
+
+    onValidationFail(field) {
+        this[`${field}ValidationState`] = 'has-error';
+        this.message = `Please enter ${field}`;
     }
 }
 
