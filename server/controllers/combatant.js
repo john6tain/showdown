@@ -1,7 +1,7 @@
 const Combatant = require('mongoose').model('Combatant');
 const User = require('mongoose').model('User');
 
-const TMP_USER_ID = '595e4be48f982109f0f95c1c';
+const TMP_USER_ID = '5961133c65bcdb1e04e8e12c'; // Replace with req.user later.
 
 module.exports = {
     add: (req, res) => {
@@ -21,11 +21,13 @@ module.exports = {
     showdown: {
         get: (req, res) => {
             User.findById(TMP_USER_ID).then(user => {
+                console.log('USER\n', user.upVotedCombatants);
                 Combatant
-                    .find({ random: { $near: [Math.random(), 0] } })
-                    .where('_id').nin([ user._id ])
+                    .findRandom()
+                    .where('_id').nin(user.upVotedCombatants)
                     .limit(2)
-                    .then(combatants => {
+                    .then((combatants) => {
+                        console.log('COMBATANTS\n', combatants);
                         if (combatants.length !== 2) {
                             return res.status(200).send({
                                 combatants: [],
@@ -33,7 +35,7 @@ module.exports = {
                             });
                         }
 
-                        res.status(200).send({combatants});
+                        res.status(200).send({ combatants });
                     });
             });
         },
@@ -45,8 +47,12 @@ module.exports = {
                 }
 
                 combatant.upVotes += 1;
-                combatant.save();
-                res.status(200).end();
+                combatant.save().then(() => {
+                    User.findById(TMP_USER_ID).then(user => {
+                        user.upVotedCombatants.push(combatantId);
+                        user.save().then(() => res.status(200).end());
+                    })
+                });
             })
         }
     },
