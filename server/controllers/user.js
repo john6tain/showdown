@@ -6,7 +6,6 @@ module.exports = {
     register: {
         post: (req, res) => {
             let userData = req.body;
-
             if (userData.password && userData.password !== userData.confirmedPassword) {
                 userData.error = 'Passwords do not match';
                 return res.status(404).send({ error: 'Passwords do not match', message: 'Need data here? Look under /server/controllers/user.js.' });

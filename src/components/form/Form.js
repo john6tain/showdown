@@ -9,7 +9,7 @@ export default class Form extends React.Component {
                         <div className='panel panel-default'>
                             <div className='panel-heading'>{ this.props.title }</div>
                             <div className='panel-body'>
-                                <form onSubmit={ this.props.handleSubmit }>
+                                <form onSubmit={ this.props.handleSubmit } action="#">
                                     <div className={ `form-group ${ this.props.submitState }` }>
                                         { this.props.submitState?
                                             <span className={ `help-block` }>{ this.props.message }</span>
