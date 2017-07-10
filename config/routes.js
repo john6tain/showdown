@@ -14,4 +14,6 @@ module.exports = (app) => {
     app.post('/showdown/upVote', controllers.combatant.showdown.upVote);
 
     app.post('/combatant/add', controllers.combatant.add);
+    
+    app.get('/combatant/all', controllers.combatant.all.get);
 };

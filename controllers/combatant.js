@@ -56,4 +56,11 @@ module.exports = {
             })
         }
     },
+    all: {
+        get: (req, res) => {
+            Combatant.find({ ownerId: TMP_USER_ID }).then(combatants => {
+                res.status(200).send({ combatants });
+            });
+        }
+    }
 };
