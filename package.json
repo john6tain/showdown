@@ -23,6 +23,8 @@
     "react-spinner": "0.2.7",
     "toastr": "2.1.2"
   },
+  "main": "index.js",
+  "engineStrict": true,
   "devDependencies": {
     "react-scripts": "1.0.10"
   },
