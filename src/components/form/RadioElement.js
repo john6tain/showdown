@@ -7,7 +7,7 @@ export default class RadioElement extends React.Component {
                 <input type='radio'
                        name={ this.props.groupName }
                        id={ this.props.value.toLowerCase() }
-                       value={ this.props.value }
+                       value={ this.props.value || '' }
                        checked={ this.props.selectedValue === this.props.value }
                        onChange={ this.props.handleChange }/>
                 <label htmlFor={ this.props.value.toLowerCase() }>{ this.props.value }</label>
