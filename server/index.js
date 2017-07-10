@@ -1,14 +1,14 @@
 "use strict";
 
 const express = require('express');
-const port = 3001;
+const port =  process.env.PORT || 3001;
 
 const config = require('./config/config');
 const database = require('./config/database.js');
 
 let app = express();
 
-let environment = process.env.NODE_ENV || 'development';
+let environment = process.env.NODE_ENV || 'production';
 database(config[environment]);
 require('./config/express')(app, config[environment]);
 require('./config/routes')(app);
