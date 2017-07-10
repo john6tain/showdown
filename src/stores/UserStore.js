@@ -9,7 +9,13 @@ class UserStore {
         this.bindActions(UserActions);
         this.bindActions(FormActions);
 
-        this.user = { gender: 'Male' };
+        this.username = '';
+        this.password = '';
+        this.confirmedPassword = '';
+        this.firstName = '';
+        this.lastName = '';
+        this.age = '';
+        this.gender = '';
     }
 
     onRegisterSuccess(data) {
@@ -34,8 +40,9 @@ class UserStore {
         toastr.warning('You have successfully logged out Bye!');
         Auth.deauthenticateUser();
     }
+
     onHandleInputChange(input) {
-        this.user[input.field] = input.value;
+        this[input.field] = input.value;
     }
 }
 

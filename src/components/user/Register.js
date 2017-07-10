@@ -1,89 +1,105 @@
 import React from 'react';
 import UserActions from '../../actions/UserActions';
 import FormActions from '../../actions/FormActions';
-import UserStore from '../../stores/UserStore';
+import FormStore from '../../stores/FormStore';
 import Form from '../form/Form';
 import TextGroup from '../form/TextGroup';
+import RadioGroup from '../form/RadioGroup';
+import RadioElement from '../form/RadioElement';
 import Submit from '../form/Submit';
 
 export default class Register extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = UserStore.getState();
+		this.state = { Register: {} };
 		this.onChange = this.onChange.bind(this);
-		this.handleOnChange = this.handleOnChange.bind(this);
 		this.handleRegister = this.handleRegister.bind(this);
 	}
 
 	onChange(state) {
-		this.setState(state);
+		this.setState({ Register: state.Register });
 	}
 
 	componentDidMount() {
-		UserStore.listen(this.onChange);
+        FormStore.init('Register');
+		FormStore.listen(this.onChange);
 	}
 
 	componentWillUnmount() {
-		UserStore.unlisten(this.onChange);
+		FormStore.unlisten(this.onChange);
 	}
 
 	handleRegister(e) {
 		e.preventDefault();
-		UserActions.register(this.state.user);
+		UserActions.register(this.state.Register);
 		this.props.history.push("/login");
 	}
 
-	handleOnChange(e) {
-		FormActions.inputChange(e);
-	}
-
 	render() {
+	    let THIS_STATE = this.state.Register;
+        console.log(THIS_STATE);
 		return (
 			<Form handleSubmit={this.handleRegister}
-				title="Login"
-				submitState={this.state.submitState}
-				message={this.state.message}>
+				title="Register"
+				submitState={THIS_STATE.submitState}
+				message={THIS_STATE.message}>
 
 				<TextGroup type="text"
-					label="username"
-					validationState={this.state.validationState}
-					message={this.state.message}
-					handleChange={this.handleOnChange} />
+					label="Username"
+                    value={THIS_STATE.username}
+					validationState={THIS_STATE.validationState}
+					message={THIS_STATE.message}
+					handleChange={FormActions.inputChange} />
 
 				<TextGroup type="password"
-					label="password"
-					value={this.state.value}
-					validationState={this.state.validationState}
-					message={this.state.message}
-					handleChange={this.handleOnChange} />
+					label="Password"
+					value={THIS_STATE.password}
+					validationState={THIS_STATE.validationState}
+					message={THIS_STATE.message}
+					handleChange={FormActions.inputChange} />
+
 				<TextGroup type="password"
-					label="confirmedPassword"
-					value={this.state.value}
-					validationState={this.state.validationState}
-					message={this.state.message}
-					handleChange={this.handleOnChange} />
+					label="Confirm password"
+                    name="confirmedPassword"
+					value={THIS_STATE.confirmedPassword}
+					validationState={THIS_STATE.validationState}
+					message={THIS_STATE.message}
+					handleChange={FormActions.inputChange} />
+
 				<TextGroup type="text"
-					label="firstName"
-					value={this.state.value}
-					validationState={this.state.validationState}
-					message={this.state.message}
-					handleChange={this.handleOnChange} />
+					label="First name"
+                    name="firstName"
+					value={THIS_STATE.firstName}
+					validationState={THIS_STATE.validationState}
+					message={THIS_STATE.message}
+					handleChange={FormActions.inputChange} />
+
 				<TextGroup type="text"
-					label="lastName"
-					value={this.state.value}
-					validationState={this.state.validationState}
-					message={this.state.message}
-					handleChange={this.handleOnChange} />
+                    label="Last name"
+					name="lastName"
+					value={THIS_STATE.lastName}
+					validationState={THIS_STATE.validationState}
+					message={THIS_STATE.message}
+					handleChange={FormActions.inputChange} />
+
 				<TextGroup type="number"
 					label="age"
-					value={this.state.value}
-					validationState={this.state.validationState}
-					message={this.state.message}
-					handleChange={this.handleOnChange} />
-				<select name="gender" onChange={this.handleOnChange} >
-					<option>Male</option>
-					<option>Female</option>
-				</select>
+					value={THIS_STATE.age}
+					validationState={THIS_STATE.validationState}
+					message={THIS_STATE.message}
+					handleChange={FormActions.inputChange} />
+
+                <RadioGroup validationState={ THIS_STATE.genderValidationState } message={ THIS_STATE.message }>
+                    <RadioElement name="gender"
+                                  value="Male"
+                                  selectedValue = { THIS_STATE.gender }
+                                  handleChange={ FormActions.inputChange } />
+
+                    <RadioElement name="gender"
+                                  value="Female"
+                                  selectedValue = { THIS_STATE.gender }
+                                  handleChange={ FormActions.inputChange } />
+                </RadioGroup>
 				<Submit type="btn-primary" value="Add" />
 			</Form>
 		)

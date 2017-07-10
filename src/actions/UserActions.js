@@ -13,14 +13,7 @@ class UserActions {
     }
 
     register(user) {
-        user.confirmedPassword = user.confirmedpassword;
-        user.firstName = user.firstname;
-        user.lastName = user.lastname;
-        user.age = Number(user.age);
-        delete user.firstname;
-        delete user.confirmedpassword;
-        delete user.lastname;
-
+        console.log(user);
         $.ajax({
             type: "POST",
             url: "http://localhost:3001/user/register",

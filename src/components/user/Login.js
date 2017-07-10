@@ -1,7 +1,7 @@
 import React from 'react';
 import UserActions from '../../actions/UserActions';
 import FormActions from '../../actions/FormActions';
-import UserStore from '../../stores/UserStore';
+import FormStore from '../../stores/FormStore';
 import Form from '../form/Form';
 import TextGroup from '../form/TextGroup';
 import Submit from '../form/Submit';
@@ -9,53 +9,53 @@ import Submit from '../form/Submit';
 export default class Login extends React.Component {
     constructor(props) {
         super(props);
-        this.state = UserStore.getState();
+        this.state = { Login: {} };
         this.onChange = this.onChange.bind(this);
-        this.onInputChange = this.onInputChange.bind(this);
         this.handleLogin = this.handleLogin.bind(this);
     }
 
     onChange(state) {
-        this.setState(state);
+        this.setState({ Login: state.Login });
     }
 
     componentDidMount() {
-        UserStore.listen(this.onChange);
+        FormStore.init('Login');
+        FormStore.listen(this.onChange);
     }
 
     componentWillUnmount() {
-        UserStore.unlisten(this.onChange);
+        FormStore.unlisten(this.onChange);
     }
 
     handleLogin(e) {
         e.preventDefault();
-        UserActions.login(this.state.user);
+
+        UserActions.login(this.state.Login);
         this.props.history.goBack()
     }
 
-    onInputChange(e) {
-       FormActions.inputChange(e);
-    }
-
     render() {
+        let THIS_STATE = this.state.Login;
         return (
             <Form handleSubmit={ this.handleLogin }
                   title="Login"
-                  submitState={ this.state.submitState }
-                  message={ this.state.message }>
+                  submitState={ THIS_STATE.submitState }
+                  message={ THIS_STATE.message }>
 
                 <TextGroup type="text"
                            label="username"
-                           validationState={ this.state.validationState }
-                           message={ this.state.message }
-                           handleChange={ this.onInputChange } />
+                           value={ THIS_STATE.username }
+                           validationState={ THIS_STATE.validationState }
+                           message={ THIS_STATE.message }
+                           handleChange={ FormActions.inputChange } />
 
                 <TextGroup type="password"
                            label="password"
-                           value={ this.state.value }
-                           validationState={ this.state.validationState }
-                           message={ this.state.message }
-                           handleChange={ this.onInputChange } />
+                           value={ THIS_STATE.password }
+                           validationState={ THIS_STATE.validationState }
+                           message={ THIS_STATE.message }
+                           handleChange={ FormActions.inputChange } />
+
                 <Submit type="btn-primary" value="Add" />
             </Form>
         )

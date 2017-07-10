@@ -26,6 +26,7 @@ class CombatantActions {
     }
 
     addCombatant(combatant) {
+        console.log('[AddCombatantActions] adding', combatant);
         let request = {
             type: 'post',
             url: 'http://localhost:3001/combatant/add',
@@ -33,7 +34,7 @@ class CombatantActions {
             data: JSON.stringify(combatant)
         };
         $.ajax(request)
-            .done(combatant => this.addCombatantSuccess(combatant))
+            .done(() => this.addCombatantSuccess())
             .fail(err => this.addCombatantFail(err.responseJSON));
 
         return true;

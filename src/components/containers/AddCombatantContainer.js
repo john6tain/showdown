@@ -1,38 +1,38 @@
 import React from 'react';
 import CombatantActions from '../../actions/CombatantActions';
 import FormActions from '../../actions/FormActions';
-import CombatantFormStore from '../../stores/CombatantFormStore';
+import FormStore from '../../stores/FormStore';
 import AddCombatant from '../combatant/AddCombatant';
 
 export default class AddCombatantContainer extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = CombatantFormStore.getState();
+        this.state = { AddCombatant: {} };
 
         this.onChange = this.onChange.bind(this);
     }
 
     onChange(state) {
-        this.setState(state);
+        this.setState({ AddCombatant: state.AddCombatant });
     }
 
     componentDidMount() {
-        CombatantFormStore.listen(this.onChange);
+        FormStore.init('AddCombatant');
+        FormStore.listen(this.onChange);
     }
 
     componentWillUnmount() {
-        CombatantFormStore.unlisten(this.onChange);
+        FormStore.unlisten(this.onChange);
     }
 
     handleSubmit(e) {
         e.preventDefault();
 
-        let name = this.state.name;
-        let image = this.state.image;
-        let description = this.state.description;
+        let name = this.state.AddCombatant.name;
+        let image = this.state.AddCombatant.image;
+        let description = this.state.AddCombatant.description;
         if (!name || !image) {
-            console.log('[AddCombatantContainer]', !name);
             FormActions.validationFail(!name? 'name' : 'image');
             return;
         }
@@ -41,25 +41,27 @@ export default class AddCombatantContainer extends React.Component {
     }
 
     render() {
+        let THIS_STATE = this.state.AddCombatant;
+        console.log('[AddCombatant]', THIS_STATE);
         let form = {
             title: 'Add Combatant',
             handleSubmit: this.handleSubmit.bind(this),
-            submitState: this.state.formSubmitState,
+            submitState: THIS_STATE.formSubmitState,
         };
         let input = {
             name: {
-                    value: this.state.name,
-                    validationState: this.state.nameValidationState
+                    value: THIS_STATE.name,
+                    validationState: THIS_STATE.nameValidationState
                 },
             image: {
-                    value: this.state.image,
-                    validationState: this.state.imageValidationState
+                    value: THIS_STATE.image,
+                    validationState: THIS_STATE.imageValidationState
                 },
-            description: { value: this.state.description }
+            description: { value: THIS_STATE.description }
         };
         return <AddCombatant form={ form }
                              input={ input }
-                             message={ this.state.message }
+                             message={ THIS_STATE.message }
                              onInputChange={ FormActions.inputChange } />;
     }
 }
